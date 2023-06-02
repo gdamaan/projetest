@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArticleController!{% endblock %}
+{% block title %}Articles - Acceuil{% endblock %}
 
 {% block body %}
 <style>
@@ -8,13 +8,17 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/projetest/src/Controller/ArticleController.php'|file_link(0) }}">src/Controller/ArticleController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/projetest/templates/article/index.html.twig'|file_link(0) }}">templates/article/index.html.twig</a></code></li>
-    </ul>
+
+<div class="example-wrapper">
+    <div class="jumbotron">
+        <h1 class="display-4">Bienvenue sur le site de gestion d'article !</h1>
+        <p class="lead">Bienvenue sur notre site dédié aux articles sur l'internet rapide et ses multiples facettes. Explorez nos contenus captivants et informatifs qui vous plongeront au cœur de l'univers numérique en évolution constante.
+            Découvrez les dernières tendances, les technologies émergentes, les conseils pratiques et bien plus encore pour tirer le meilleur parti de votre expérience en ligne. Préparez-vous à plonger dans un monde connecté où la vitesse,
+            l'innovation et les opportunités n'attendent que vous.</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
 </div>
 {% endblock %}
