@@ -30,7 +30,7 @@ class Article
     private ?string $titre = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_enre = null;
+    private ?\DateTimeInterface $dateenre = null;
 
     private $creeLe;
 
@@ -83,12 +83,12 @@ class Article
 
     public function getDateEnre(): ?\DateTimeInterface
     {
-        return $this->date_enre;
+        return $this->dateenre;
     }
 
     public function setDateEnre(\DateTimeInterface $date_enre): self
     {
-        $this->date_enre = $date_enre;
+        $this->dateenre = $date_enre;
 
         return $this;
     }
