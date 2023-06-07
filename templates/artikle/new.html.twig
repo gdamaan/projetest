@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shop - Création{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">Création d'un article</h1>
+
+        {{ form(form) }}
+        <a class="btn btn-secondary mt-4" href="{{ path('app_artikle') }}">Retour</a>
+    </div>
+{% endblock %}

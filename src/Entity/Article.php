@@ -29,7 +29,7 @@ class Article
     #[ORM\Column(length: 50)]
     private ?string $titre = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE,nullable: true)]
     private ?\DateTimeInterface $dateenre = null;
 
     private $creeLe;
