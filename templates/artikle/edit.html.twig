@@ -6,8 +6,13 @@
     <div class="container">
         <h1 class="mt-4">Modification d'un article</h1>
 
-        {# {{ form(form) }}#}
-        
+        {{ form_start(form) }}
+
+
+
+        {{ form_end(form) }}
+
+
         <a class="btn btn-secondary mt-4" href="{{ path('app_artikle') }}">Retour</a>
     </div>
 {% endblock %}

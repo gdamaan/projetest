@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ArtikleController extends AbstractController
 {
 
-    #[Route('/artikle', name: 'app_artikle',methods: ['GET'])]
+    #[Route('/article', name: 'app_artikle',methods: ['GET'])]
     public function index(ArticleRepository $repository,PaginatorInterface $paginator, Request $request): Response
     {
         $articles = $paginator->paginate(
@@ -61,12 +61,43 @@ class ArtikleController extends AbstractController
     }
     #[Route('article/edition/{id}','article.edit',methods: ['GET','POST'])]
     public function edit (ArticleRepository
-    $repository, int $id) : Response
+    $repository, int $id,EntityManagerInterface $manager,Request $request) : Response
     {
         $article = $repository->findOneBy(["id"=>$id]);
         $form = $this->createForm(ArticleType::class,$article);
 
-        return $this->render('artikle/edit.html.twig');
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $article =$form->getData();
+            $manager->persist($article);
+            $manager->flush();
+            $this->addFlash(
+                'sucess',
+                "La modification de l'article a été effectuée !"
+            );
+            return $this->redirectToRoute('app_artikle');
+        }
+
+        return $this->render('artikle/edit.html.twig',[
+            'form'=>$form->createView(),
+        ]);
+
+    }
+    #[Route('article/suppression/{id}','article.delete',methods: ['GET'])]
+    public function delete(EntityManagerInterface $manager,int $id,ArticleRepository $repository) : Response
+    {
+
+        $article = $repository->findOneBy(["id"=>$id]);
+        if (!$article){
+            $this->addFlash(
+                'success',"L'article n'existe pas !"
+            );
+        }
+
+        $manager->remove($article);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_artikle');
     }
 
 

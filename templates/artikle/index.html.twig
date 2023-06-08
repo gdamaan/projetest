@@ -16,6 +16,8 @@
                 <th scope="col">Titre</th>
                 <th scope="col">Résumé</th>
                 <th scope="col">Date d'enregistrement</th>
+                <th scope="col">Edition</th>
+                <th scope="col">Suppresion</th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +28,12 @@
                     <td>{{ article.titre }}</td>
                     <td>{{ article.resume }}</td>
                     <td>{{ article.dateenre |date('d/m/Y') }}</td>
+                    <td>
+                        <a class="btn btn-info mt-4" href="{{ path('article.edit',{id: article.id })}}">Modifier</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger mt-4" href="{{ path('article.delete',{id: article.id })}}">Suppression</a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
