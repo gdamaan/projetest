@@ -21,6 +21,12 @@
     {% block body %}
 
     {% endblock %}
+    {% if is_granted('ROLE_USER') %}
+    <div style="position: fixed; bottom: 10px; right: 10px;">
+        <a class="btn btn-primary btn-lg" href="{{ path('app_logout') }}">Déconnexion</a>
+    </div>
+    {% endif %}
+
 
     </body>
 </html>

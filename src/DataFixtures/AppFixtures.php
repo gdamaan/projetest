@@ -14,15 +14,18 @@ class AppFixtures extends Fixture
 {
 
     private Generator $faker;
-    public function __construct(){
+
+    public function __construct()
+    {
 
         $this->faker = Factory::create('fr_FR');
     }
+
     public function load(ObjectManager $manager): void
     {
 
 
-        for ($i=0;$i<=50;$i++) {
+        for ($i = 0; $i <= 50; $i++) {
             $article = new Article();
             $article->setUrl($this->faker->url);
             $article->setTitre($this->faker->word);
@@ -36,4 +39,5 @@ class AppFixtures extends Fixture
 
         $manager->flush();
     }
+
 }

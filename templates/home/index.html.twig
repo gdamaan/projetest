@@ -17,8 +17,15 @@
             Découvrez les dernières tendances, les technologies émergentes, les conseils pratiques et bien plus encore pour tirer le meilleur parti de votre expérience en ligne. Préparez-vous à plonger dans un monde connecté où la vitesse,
             l'innovation et les opportunités n'attendent que vous.</p>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        {% if not is_granted('ROLE_USER') %}
+        <p>Pour utiliser le site, inscrivez vous ou connectez vous à votre compte !</p>
+        <a class="btn btn-primary btn-lg" href="{{ path('app_register') }}" role="button">S'inscrire</a>
+        <a class="btn btn-primary btn-lg" href="{{ path('app_login') }}" role="button">Se connecter</a>
+        {% endif %}
+        {% if is_granted('ROLE_USER') %}
+        <p>Vous êtes connecté !</p>
+        <a class="btn btn-primary btn-lg" href="{{ path('app_artikle') }}" role="button">Accéder à mes articles</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

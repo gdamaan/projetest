@@ -24,6 +24,8 @@ class ArtikleController extends AbstractController
     #[Route('/article', name: 'app_artikle',methods: ['GET'])]
     public function index(ArticleRepository $repository,PaginatorInterface $paginator, Request $request): Response
     {
+
+
         $articles = $paginator->paginate(
             $repository->findAll(), /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
@@ -39,6 +41,8 @@ class ArtikleController extends AbstractController
     #[Route('/artikle/nouveau','article.new',methods: ['GET','POST'])]
     public function new(Request $request,EntityManagerInterface $manager)
     : Response{
+
+
         $article = new Article();
         $form = $this->createForm(ArticleType::class,$article);
         $form->handleRequest($request);
@@ -63,6 +67,8 @@ class ArtikleController extends AbstractController
     public function edit (ArticleRepository
     $repository, int $id,EntityManagerInterface $manager,Request $request) : Response
     {
+
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $article = $repository->findOneBy(["id"=>$id]);
         $form = $this->createForm(ArticleType::class,$article);
 
@@ -86,6 +92,8 @@ class ArtikleController extends AbstractController
     #[Route('article/suppression/{id}','article.delete',methods: ['GET'])]
     public function delete(EntityManagerInterface $manager,int $id,ArticleRepository $repository) : Response
     {
+
+        $this->denyAccessUnlessGranted('ROLE_USER');
 
         $article = $repository->findOneBy(["id"=>$id]);
         if (!$article){
