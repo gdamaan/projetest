@@ -4,14 +4,22 @@
 
 {% block body %}
     <div class="container mt-4">
+<<<<<<< HEAD
 <form  method="post">
+=======
+<form method="post">
+>>>>>>> f6e64eb769549baf0d812c766d53cd4d12ae1d32
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     {% if app.user %}
         <div class="mb-3">
+<<<<<<< HEAD
             Vous êtes connecté avec l'adresse mail {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+=======
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+>>>>>>> f6e64eb769549baf0d812c766d53cd4d12ae1d32
         </div>
     {% endif %}
 
