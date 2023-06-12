@@ -21,6 +21,13 @@
                     </a>
                 </li>
                 {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                    <li>
+                        <a class="nav-link active" href="{{ path('app_panier') }}">Panier
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                {% endif %}
                 {% if not is_granted('ROLE_USER') %}
                 <a class="nav-link active" href="{{ path('app_register') }}">Inscription
                     <span class="visually-hidden">(current)</span>

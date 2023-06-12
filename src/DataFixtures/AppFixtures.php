@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 
 use App\Entity\Article;
+use App\Entity\Panier;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -23,8 +24,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
-
+        $articles=[];
         for ($i = 0; $i <= 50; $i++) {
             $article = new Article();
             $article->setUrl($this->faker->url);
@@ -32,7 +32,17 @@ class AppFixtures extends Fixture
             $article->setResume($this->faker->text(99));
             $dateEnre = new \DateTime($this->faker->date);
             $article->setDateEnre($dateEnre);
+            $articles[] =$article;
             $manager->persist($article);
+        }
+
+
+        for ($i=0; $i <= 20; $i++){
+            $panier =new Panier();
+            for ($k =0 ;$k< mt_rand(1,5);$k++){
+                $panier->addListeArticle($articles[mt_rand(0,count($articles)-1)]);
+            }
+            $manager->persist($panier);
         }
 
 
