@@ -39,6 +39,7 @@ class AppFixtures extends Fixture
 
         for ($i=0; $i <= 20; $i++){
             $panier =new Panier();
+            $panier->setNom($this->faker->word);
             for ($k =0 ;$k< mt_rand(1,5);$k++){
                 $panier->addListeArticle($articles[mt_rand(0,count($articles)-1)]);
             }

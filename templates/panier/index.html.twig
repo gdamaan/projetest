@@ -4,41 +4,50 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Les articles de mon panier</h1>
-
+        <h1>Tout les paniers</h1>
         <table class="table table-hover mt-4">
             <thead>
             <tr>
-                <th scope="col">Numéro d'article</th>
-                <th scope="col">URL</th>
-                <th scope="col">Titre</th>
-                <th scope="col">Résumé</th>
-                <th scope="col">Date d'enregistrement</th>
-                <th scope="col">Edition</th>
-                <th scope="col">Suppresion</th>
+                <th scope="col">Numéro de panier</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Titre des articles du panier</th>
+                <th scope="col">Numéros des articles</th>
+                <th scope="col">URL des articles du panier</th>
+                <th scope="col">Supprimer</th>
             </tr>
             </thead>
             <tbody>
-            {% for article in articles %}
+            {% for panier in paniers %}
                 <tr>
-                    <th scope="row">{{ article.id }}</th>
-                    <td>{{ article.url }}</td>
-                    <td>{{ article.titre }}</td>
-                    <td>{{ article.resume }}</td>
-                    <td>{{ article.dateenre |date('d/m/Y') }}</td>
+                    <th scope="row">{{ panier.id }}</th>
+                    <td>{{ panier.nom }}</td>
                     <td>
-                        <a class="btn btn-info mt-4" href="{{ path('article.edit',{id: article.id })}}">Modifier</a>
+                        {% for article in panier.listeArticles  %}
+                            {{ article.titre }} <br>
+                        {% endfor %}
                     </td>
                     <td>
-                        <a class="btn btn-danger mt-4" href="{{ path('article.delete',{id: article.id })}}">Suppression</a>
+                        {% for article in panier.listeArticles  %}
+                            {{ article.id }}
+                        {% endfor %}
                     </td>
+                    <td>
+                        {% for article in panier.listeArticles  %}
+                            {{ article.url }}<br>
+                        {% endfor %}
+                    </td>
+
+                    <td>
+                        <a class="btn btn-danger mt-4" href="{{ path('panier.delete',{id: panier.id })}}">Suppression</a>
+                    </td>
+
                 </tr>
             {% endfor %}
             </tbody>
         </table>
         {# display navigation #}
         <div class="navigation d-flex justify-content-center mt-4">
-            {{ knp_pagination_render(articles) }}
+            {{ knp_pagination_render(paniers) }}
         </div>
     </div>
 {% endblock %}

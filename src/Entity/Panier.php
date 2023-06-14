@@ -18,6 +18,9 @@ class Panier
     #[ORM\ManyToMany(targetEntity: Article::class)]
     private Collection $listeArticles;
 
+    #[ORM\Column(length: 50)]
+    private ?string $nom = null;
+
     public function __construct()
     {
         $this->listeArticles = new ArrayCollection();
@@ -48,6 +51,18 @@ class Panier
     public function removeListeArticle(Article $listeArticle): self
     {
         $this->listeArticles->removeElement($listeArticle);
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
 
         return $this;
     }
